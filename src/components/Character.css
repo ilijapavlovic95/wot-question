@@ -23,6 +23,9 @@
   opacity: 0.3;
   cursor: pointer;
 }
+.char-circle.chosen {
+  border: 3px solid black;
+}
 
 img {
   height: 80%;
@@ -49,12 +52,34 @@ img {
 }
 
 .char-circle h3 {
+  cursor: pointer;
   position: absolute;
   bottom: 0;
+  z-index: 3;
   background: white;
   border-radius: 6px;
   padding: 6px;
   margin: 0;
   transform: translateY(50%);
   border: 3px solid black;
+}
+
+.ask-again-btn {
+  outline: none;
+  border: none;
+  height: 32px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 12px;
+  position: absolute;
+  bottom: -68px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  border: 3px solid black;
+}
+.ask-again-btn:hover {
+  opacity: 0.92;
 }

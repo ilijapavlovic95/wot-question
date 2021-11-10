@@ -21,3 +21,39 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
+.answer-wrapper {
+  margin: 5vw 10vw;
+  border: 10px solid black;
+  border-radius: 12px;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: relative;
+}
+.answer-wrapper span {
+  font-size: 2rem;
+  text-align: center;
+}
+.answer-wrapper .chosen-char {
+  /* position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 8px; */
+  text-align: center;
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  position: relative;
+}
+.chosen-char img {
+  /* width: 100px; */
+  width: 80%;
+}
