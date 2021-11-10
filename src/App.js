@@ -72,18 +72,18 @@ function App() {
   return (
     <div className="App">
       <div className="heading">
-        <h1>Wheel of Timer</h1>
+        <h1>The Wheel of Timer</h1>
         <h2>Choose someone to give you AN answer how many days are left :)</h2>
         {/* <small>
           (Sorry for bad illustrations. Sorry for bad English. I don't really know the exact time when the show starts,
           I'm just a simple{" "}
           <span style={{ textDecoration: "line-through", fontFamily: "sans-serif" }}>sheepherder</span> programmer)
         </small> */}
-        <br />
+        {/* <br />
         <small>
           (Feel free to send me some interesting answers if you want, I'll add it. Twitter:{" "}
           <a href="https://twitter.com">@eliapav)</a>
-        </small>
+        </small> */}
         {/* <h3>{startDate.toLocaleString()}</h3>
         <h3>Miliseconds: {miliseconds}</h3>
         <h3>Seconds: {seconds.toFixed(2)}</h3>
