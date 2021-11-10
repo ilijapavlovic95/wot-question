@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import Answer from "./components/Answer";
 import Character from "./components/Character";
 import { ANSWERS, CHARACTERS } from "./data";
 
@@ -18,12 +19,13 @@ function App() {
 
   const addVisibleAnswer = (answerId, answer) => {
     const clonedVisibleAnswers = [...visibleAnswers];
-    // const index = clonedVisibleAnswers.indexOf((el) => el.id === answerId);
-    // if (index > -1) {
-    //   clonedVisibleAnswers.splice(index, 1);
-    // }
+    const index = clonedVisibleAnswers.findIndex((el) => el.id === answerId);
+    if (index > -1) {
+      clonedVisibleAnswers.splice(index, 1);
+    }
     const updatedAnswer = { ...answers.find((el) => el.id === answerId) };
     updatedAnswer.answer = answer;
+    updatedAnswer.id = clonedVisibleAnswers.length + 1;
     setVisibleAnswers([updatedAnswer, ...clonedVisibleAnswers]);
   };
 
@@ -110,17 +112,14 @@ function App() {
         })}
       </div>
       {visibleAnswers.map((answer, index) => (
-        <div className="answer-wrapper" key={answer.id + index}>
-          <Character
-            id={answer.character}
-            code={getCharacterById(answer.character).code}
-            color={getCharacterById(answer.character).color}
-            name={getCharacterById(answer.character).name}
-            isChosen={true}
-            onClick={() => {}}
-          ></Character>
-          <div className="answer-baloon">{answer.answer}</div>
-        </div>
+        <Answer
+          key={answer.id}
+          characterId={answer.character}
+          code={getCharacterById(answer.character).code}
+          color={getCharacterById(answer.character).color}
+          name={getCharacterById(answer.character).name}
+          answer={answer.answer}
+        ></Answer>
       ))}
     </div>
   );
