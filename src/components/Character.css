@@ -8,6 +8,14 @@
   position: relative;
   margin: 0 8px;
 }
+@media only screen and (max-width: 600px) {
+  .char-circle h3 {
+    display: none;
+  }
+  .char-circle .ask-again-btn {
+    display: none;
+  }
+}
 .hover-overlay {
   position: absolute;
   top: 0;
