@@ -8,13 +8,24 @@ function App() {
 
   const [characters, setCharacters] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [visibleAnswer, setVisibleAnswer] = useState("");
-  const [chosenCharacter, setChosenCharacter] = useState(null);
+  const [visibleAnswers, setVisibleAnswers] = useState([]);
+  // const [chosenCharacter, setChosenCharacter] = useState(null);
 
   useEffect(() => {
     setCharacters(shuffleArray(CHARACTERS));
     setAnswers(ANSWERS);
   }, []);
+
+  const addVisibleAnswer = (answerId, answer) => {
+    const clonedVisibleAnswers = [...visibleAnswers];
+    // const index = clonedVisibleAnswers.indexOf((el) => el.id === answerId);
+    // if (index > -1) {
+    //   clonedVisibleAnswers.splice(index, 1);
+    // }
+    const updatedAnswer = { ...answers.find((el) => el.id === answerId) };
+    updatedAnswer.answer = answer;
+    setVisibleAnswers([updatedAnswer, ...clonedVisibleAnswers]);
+  };
 
   const shuffleArray = (unshuffledArray) => {
     return unshuffledArray
@@ -23,24 +34,11 @@ function App() {
       .map(({ value }) => value);
   };
 
-  // const answerTypeWriter = (speed, answer, i) => {
-  //   if (i < answer.length) {
-  //     console.log("answer: ", answer);
-  //     console.log("visibleAnswer: ", visibleAnswer);
-  //     const newValue = visibleAnswer + answer.charAt(i);
-  //     console.log("newValue: ", newValue);
-  //     setVisibleAnswer(newValue);
-  //     console.log(visibleAnswer);
-  //     i++;
-  //     setTimeout(() => {
-  //       answerTypeWriter(speed, answer, i);
-  //     }, speed);
-  //   }
-  // };
+  const getCharacterById = (id) => {
+    return characters.find((el) => el.id === id);
+  };
 
   const onCharacterChoose = (characterId) => {
-    setVisibleAnswer(null);
-
     let clonedAnswers = [...answers];
     let answerIndex = 0;
     for (let index = 0; index < answers.length; index++) {
@@ -61,9 +59,9 @@ function App() {
         answer = answer.replace(":minutes:", minutes);
         answer = answer.replace(":seconds:", seconds);
 
-        setVisibleAnswer(answer);
+        addVisibleAnswer(answerObj.id, answer);
 
-        setChosenCharacter(characters.find((el) => el.id === answerObj.character));
+        // setChosenCharacter(characters.find((el) => el.id === answerObj.character));
         clonedAnswers.splice(answerIndex, 1);
         const updatedAnswers = [...clonedAnswers, answerObj];
         setAnswers(updatedAnswers);
@@ -97,9 +95,8 @@ function App() {
       <div className="team-wrapper">
         {characters.map((el) => {
           return (
-            <div className="char-wrapper">
+            <div className="char-wrapper" key={el.id}>
               <Character
-                key={el.id}
                 id={el.id}
                 color={el.color}
                 name={el.name}
@@ -112,21 +109,19 @@ function App() {
           );
         })}
       </div>
-      {chosenCharacter ? (
-        <div className="answer-wrapper">
+      {visibleAnswers.map((answer, index) => (
+        <div className="answer-wrapper" key={answer.id + index}>
           <Character
-            id={chosenCharacter.id}
-            color={chosenCharacter.color}
-            name={chosenCharacter.name}
-            code={chosenCharacter.code}
+            id={answer.character}
+            code={getCharacterById(answer.character).code}
+            color={getCharacterById(answer.character).color}
+            name={getCharacterById(answer.character).name}
             isChosen={true}
             onClick={() => {}}
           ></Character>
-          <div className="answer-baloon">{visibleAnswer}</div>
+          <div className="answer-baloon">{answer.answer}</div>
         </div>
-      ) : (
-        ""
-      )}
+      ))}
     </div>
   );
 }

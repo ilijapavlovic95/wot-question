@@ -10,6 +10,11 @@
   transition: background 0.2s;
 }
 @media only screen and (max-width: 600px) {
+  .char-circle {
+    width: 14vw;
+    height: 14vw;
+    overflow: hidden;
+  }
   .char-circle h3 {
     display: none;
   }
