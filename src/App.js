@@ -72,13 +72,13 @@ function App() {
   return (
     <div className="App">
       <div className="heading">
-        <h1>When does The Wheel of Time start ?</h1>
-        <h2>Choose someone to give you AN answer :)</h2>
-        <small>
+        <h1>Wheel of Timer</h1>
+        <h2>Choose someone to give you AN answer how many days are left :)</h2>
+        {/* <small>
           (Sorry for bad illustrations. Sorry for bad English. I don't really know the exact time when the show starts,
           I'm just a simple{" "}
           <span style={{ textDecoration: "line-through", fontFamily: "sans-serif" }}>sheepherder</span> programmer)
-        </small>
+        </small> */}
         <br />
         <small>
           (Feel free to send me some interesting answers if you want, I'll add it. Twitter:{" "}
