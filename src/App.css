@@ -30,11 +30,11 @@ h2 {
 }
 
 .answer-wrapper {
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   margin-top: 2rem;
   display: flex;
   height: 10vw;
-  padding: 2rem;
+  padding: 3vw;
   align-items: center;
   transform: translateX(-100%);
   transition: transform 0.4s;
