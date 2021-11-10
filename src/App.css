@@ -6,6 +6,11 @@
 .heading {
   width: 100%;
   text-align: center;
+  background: whitesmoke;
+  padding-top: 2rem;
+}
+.heading h1 {
+  margin: 0;
 }
 
 h1 {
@@ -17,43 +22,44 @@ h2 {
 }
 
 .team-wrapper {
-  padding: 2rem 0;
+  padding: 4rem;
   display: flex;
   justify-content: center;
+  background: whitesmoke;
 }
 
 .answer-wrapper {
-  margin: 5vw 10vw;
-  border: 10px solid black;
-  border-radius: 12px;
-  min-height: 30vh;
+  /*  */
+  margin-bottom: 32px;
+  margin-top: 2rem;
   display: flex;
-  flex-direction: column;
+  height: 10vw;
+  padding: 2rem;
+  align-items: center;
+}
+.answer-wrapper .answer-baloon {
+  flex: 1;
+  height: 100%;
+  border: 8px solid black;
+  border-radius: 48px;
+  margin-left: 40px;
+  position: relative;
+  display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  position: relative;
-}
-.answer-wrapper span {
   font-size: 2rem;
+  padding: 12px;
   text-align: center;
 }
-.answer-wrapper .chosen-char {
-  /* position: absolute;
-  left: 50%;
-  top: -10px;
-  transform: translateX(-50%);
-  width: 30%;
-  height: 60px;
-  border: 1px solid black;
-  border-radius: 8px; */
-  text-align: center;
-  height: 140px;
-  width: 140px;
-  border-radius: 50%;
-  position: relative;
-}
-.chosen-char img {
-  /* width: 100px; */
-  width: 80%;
+.answer-baloon:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -26px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 26px solid transparent;
+  border-bottom: 26px solid transparent;
+  border-right: 26px solid black;
 }

@@ -101,10 +101,6 @@ const ANSWERS = [
   // egwene
   {
     character: "e",
-    answer: ":days: days. Do you need hours?",
-  },
-  {
-    character: "e",
     answer: ":days: days and :hours: hours. Do you need minutes?",
   },
   {

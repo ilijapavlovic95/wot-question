@@ -4,7 +4,7 @@ import Character from "./components/Character";
 import { ANSWERS, CHARACTERS } from "./data";
 
 function App() {
-  const startDate = new Date("2021-11-19T16:00Z");
+  const startDate = new Date("2021-11-19T01:00Z");
 
   const [characters, setCharacters] = useState([]);
   const [answers, setAnswers] = useState([]);
@@ -48,8 +48,11 @@ function App() {
       if (answerObj.character === characterId) {
         answerIndex = index;
         const miliseconds = Math.abs(startDate - new Date());
-        const days = Math.floor(miliseconds / 1000 / 60 / 60 / 24);
+        let days = Math.floor(miliseconds / 1000 / 60 / 60 / 24);
         const hours = Math.floor(miliseconds / 1000 / 60 / 60 - days * 24);
+        if (answerObj.character !== "e" && hours > 0) {
+          days++;
+        }
         const minutes = Math.floor(miliseconds / 1000 / 60 - days * 24 * 60 - hours * 60);
         const seconds = Math.floor(miliseconds / 1000 - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60);
         let answer = answerObj.answer;
@@ -73,7 +76,7 @@ function App() {
     <div className="App">
       <div className="heading">
         <h1>The Wheel of Timer</h1>
-        <h2>Choose someone to give you AN answer how many days are left :)</h2>
+        <h2>Click on someone to give you AN answer how many days are left :)</h2>
         {/* <small>
           (Sorry for bad illustrations. Sorry for bad English. I don't really know the exact time when the show starts,
           I'm just a simple{" "}
@@ -94,24 +97,32 @@ function App() {
       <div className="team-wrapper">
         {characters.map((el) => {
           return (
-            <Character
-              key={el.id}
-              id={el.id}
-              color={el.color}
-              name={el.name}
-              code={el.code}
-              onClick={onCharacterChoose}
-              isChosen={chosenCharacter && chosenCharacter.id === el.id ? true : false}
-            ></Character>
+            <div className="char-wrapper">
+              <Character
+                key={el.id}
+                id={el.id}
+                color={el.color}
+                name={el.name}
+                code={el.code}
+                onClick={onCharacterChoose}
+                grayMode={true}
+              ></Character>
+              <div className="answer-baloon"></div>
+            </div>
           );
         })}
       </div>
       {chosenCharacter ? (
         <div className="answer-wrapper">
-          {/* <div className="chosen-char" style={{ background: chosenCharacter.color }}>
-            <img alt="character-art" src={process.env.PUBLIC_URL + "/people/" + chosenCharacter.code + ".svg"}></img>
-          </div> */}
-          <span>{visibleAnswer}</span>
+          <Character
+            id={chosenCharacter.id}
+            color={chosenCharacter.color}
+            name={chosenCharacter.name}
+            code={chosenCharacter.code}
+            isChosen={true}
+            onClick={() => {}}
+          ></Character>
+          <div className="answer-baloon">{visibleAnswer}</div>
         </div>
       ) : (
         ""

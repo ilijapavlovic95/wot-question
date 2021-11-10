@@ -7,6 +7,7 @@
   align-items: center;
   position: relative;
   margin: 0 8px;
+  transition: background 0.2s;
 }
 @media only screen and (max-width: 600px) {
   .char-circle h3 {
@@ -32,44 +33,55 @@
   cursor: pointer;
 }
 .char-circle.chosen {
-  border: 3px solid black;
+  /* border: 3px solid black; */
+  width: 14vw;
+  height: 14vw;
+}
+.char-circle.chosen h3 {
+  display: none;
+}
+
+.char-circle.gray-mode {
+  background: gray !important;
+}
+.char-circle.gray-mode img {
+  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+  filter: grayscale(100%);
 }
 
 img {
   height: 80%;
   z-index: 3;
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 0.2s; */
   cursor: pointer;
 }
 .char-circle.nynaeve img {
-  height: 11vw;
-  position: absolute;
-  top: 1.2vw;
-  left: -1.6vw;
-  transform: unset;
+  height: 115%;
+  margin-left: -42%;
+  margin-bottom: -39%;
 }
 .char-circle.egwene img {
-  height: 10vw;
-  position: absolute;
-  top: 1.1vw;
-  left: 1.1vw;
-  transform: unset;
+  height: 106%;
+  margin-left: -8%;
+  margin-bottom: -22%;
 }
 
 .char-circle h3 {
   cursor: pointer;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   z-index: 3;
   background: white;
   border-radius: 6px;
-  padding: 6px;
+  padding: 4px 4px;
   margin: 0;
   transform: translateY(50%);
   border: 3px solid black;
+  font-size: 1rem;
 }
 
 .ask-again-btn {
