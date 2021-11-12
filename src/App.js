@@ -1,33 +1,19 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Answer from "./components/Answer";
-import Character from "./components/Character";
-import { ANSWERS, CHARACTERS } from "./data";
+import React, { useEffect, useState } from 'react';
+import './App.css';
+import Character from './components/Character';
+import { ANSWERS, CHARACTERS } from './data';
+
 
 function App() {
-  const startDate = new Date("2021-11-19T01:00Z");
+  const startDate = new Date('2021-11-19T01:00Z');
 
   const [characters, setCharacters] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [visibleAnswers, setVisibleAnswers] = useState([]);
-  // const [chosenCharacter, setChosenCharacter] = useState(null);
 
   useEffect(() => {
     setCharacters(shuffleArray(CHARACTERS));
     setAnswers(ANSWERS);
   }, []);
-
-  const addVisibleAnswer = (answerId, answer) => {
-    const clonedVisibleAnswers = [...visibleAnswers];
-    const index = clonedVisibleAnswers.findIndex((el) => el.id === answerId);
-    if (index > -1) {
-      clonedVisibleAnswers.splice(index, 1);
-    }
-    const updatedAnswer = { ...answers.find((el) => el.id === answerId) };
-    updatedAnswer.answer = answer;
-    updatedAnswer.id = clonedVisibleAnswers.length + 1;
-    setVisibleAnswers([updatedAnswer, ...clonedVisibleAnswers]);
-  };
 
   const shuffleArray = (unshuffledArray) => {
     return unshuffledArray
@@ -36,63 +22,11 @@ function App() {
       .map(({ value }) => value);
   };
 
-  const getCharacterById = (id) => {
-    return characters.find((el) => el.id === id);
-  };
-
-  const onCharacterChoose = (characterId) => {
-    let clonedAnswers = [...answers];
-    let answerIndex = 0;
-    for (let index = 0; index < answers.length; index++) {
-      const answerObj = answers[index];
-      if (answerObj.character === characterId) {
-        answerIndex = index;
-        const miliseconds = Math.abs(startDate - new Date());
-        let days = Math.floor(miliseconds / 1000 / 60 / 60 / 24);
-        const hours = Math.floor(miliseconds / 1000 / 60 / 60 - days * 24);
-        if (answerObj.character !== "e" && hours > 0) {
-          days++;
-        }
-        const minutes = Math.floor(miliseconds / 1000 / 60 - days * 24 * 60 - hours * 60);
-        const seconds = Math.floor(miliseconds / 1000 - days * 24 * 60 * 60 - hours * 60 * 60 - minutes * 60);
-        let answer = answerObj.answer;
-        answer = answer.replace(":days:", days);
-        answer = answer.replace(":hours:", hours);
-        answer = answer.replace(":minutes:", minutes);
-        answer = answer.replace(":seconds:", seconds);
-
-        addVisibleAnswer(answerObj.id, answer);
-
-        // setChosenCharacter(characters.find((el) => el.id === answerObj.character));
-        clonedAnswers.splice(answerIndex, 1);
-        const updatedAnswers = [...clonedAnswers, answerObj];
-        setAnswers(updatedAnswers);
-        break;
-      }
-    }
-  };
-
   return (
     <div className="App">
       <div className="heading">
         <h1>The Wheel of Timer</h1>
         <h2>Click on someone to give you AN answer how many days are left :)</h2>
-        {/* <small>
-          (Sorry for bad illustrations. Sorry for bad English. I don't really know the exact time when the show starts,
-          I'm just a simple{" "}
-          <span style={{ textDecoration: "line-through", fontFamily: "sans-serif" }}>sheepherder</span> programmer)
-        </small> */}
-        {/* <br />
-        <small>
-          (Feel free to send me some interesting answers if you want, I'll add it. Twitter:{" "}
-          <a href="https://twitter.com">@eliapav)</a>
-        </small> */}
-        {/* <h3>{startDate.toLocaleString()}</h3>
-        <h3>Miliseconds: {miliseconds}</h3>
-        <h3>Seconds: {seconds.toFixed(2)}</h3>
-        <h3>Minutes: {minutes.toFixed(2)}</h3>
-        <h3>Hours: {hours.toFixed(2)}</h3>
-        <h3>Days: {days.toFixed(2)}</h3> */}
       </div>
       <div className="team-wrapper">
         {characters.map((el) => {
@@ -103,24 +37,12 @@ function App() {
                 color={el.color}
                 name={el.name}
                 code={el.code}
-                onClick={onCharacterChoose}
-                grayMode={true}
               ></Character>
               <div className="answer-baloon"></div>
             </div>
           );
         })}
       </div>
-      {visibleAnswers.map((answer, index) => (
-        <Answer
-          key={answer.id}
-          characterId={answer.character}
-          code={getCharacterById(answer.character).code}
-          color={getCharacterById(answer.character).color}
-          name={getCharacterById(answer.character).name}
-          answer={answer.answer}
-        ></Answer>
-      ))}
     </div>
   );
 }
