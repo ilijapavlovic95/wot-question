@@ -83,7 +83,7 @@ function App() {
 
         <div className="wot-timer">
 
-          <div>
+          <div className="inner-wrapper">
             <div className="timer-title">
               THE WHEEL OF TIMER
             </div>
@@ -113,9 +113,21 @@ function App() {
 
             <div className="theme-character">
               <div className="char-avatar">
-                <img className={theme.id + '-img'} alt="character-art" src={process.env.PUBLIC_URL + '/people/' + theme.code + '.svg'}></img>
+                <img className={theme.id + '-img'} alt="character-art" src={process.env.PUBLIC_URL + '/people/' + theme.code + '.png'}></img>
               </div>
               <div className="char-text">{theme.quote}</div>
+            </div>
+
+            <div className="theme mobile">
+              <div className="theme-chooser">
+                <div className="prev-theme arrow" onClick={switchToPrevTheme}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" /></svg>
+                </div>
+                <div className="current-theme">{theme.theme}</div>
+                <div className="next-theme arrow" onClick={switchToNextTheme}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" /></svg>
+                </div>
+              </div>
             </div>
 
           </div>

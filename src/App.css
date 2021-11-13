@@ -45,25 +45,9 @@
   /* background: var(--timer-color)smoke; */
 }
 
-@media only screen and (max-width: 800px) {
-  body {
-    padding-bottom: 1rem;
-  }
-  .team-wrapper {
-    flex-wrap: wrap;
-    padding: 12px;
-    padding-top: 22px;
-  }
-  .team-wrapper .char-wrapper {
-    flex: 22vw;
-    margin: 8px 0;
-    display: flex;
-    justify-content: center;
-  }
-}
-
 .theme {
   position: absolute;
+  z-index: 3;
   top: 10vh;
   left: 50%;
   transform: translateX(-50%);
@@ -119,32 +103,10 @@
   align-items: center;
 }
 
-.wot-timer {
-  /* height: 100vh;
-  width: 100vw; */
-  flex: 20vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.wot-timer .timer-title {
-  background: var(--timer-background);
-  margin: 0 1.4vw;
-  margin-bottom: 8px;
-  padding: 6px;
-  box-sizing: border-box;
-  font-size: 3vw;
-  letter-spacing: 1vw;
-  text-align: center;
-  font-weight: 700;
-  color: var(--timer-color);
-}
 .theme-character {
   display: flex;
   height: 100px;
-  margin: 0 1.4vw;
+  width: 100%;
   margin-bottom: 8px;
 }
 .char-avatar {
@@ -159,7 +121,7 @@
 }
 .char-avatar img {
   height: 80%;
-  width: 80%;
+  /* width: 80%; */
 }
 .char-avatar img.n-img {
   transform: scale(1.5);
@@ -180,19 +142,52 @@
   justify-content: center;
   padding: 0 8px;
   font-size: 1.6rem;
+  /* font-size: 2vw; */
   text-transform: uppercase;
+}
+
+.wot-timer {
+  /* height: 100vh;
+  width: 100vw; */
+  flex: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.wot-timer > .inner-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+}
+@media only screen and (min-width: 1000px) {
+  .wot-timer > .inner-wrapper {
+    width: 80vw;
+  }
+}
+
+.wot-timer .timer-title {
+  background: var(--timer-background);
+  margin-bottom: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  font-size: 3vw;
+  letter-spacing: 1vw;
+  text-align: center;
+  font-weight: 700;
+  color: var(--timer-color);
 }
 
 .wot-timer .values,
 .wot-timer .labels {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .wot-timer .values .timer-col {
-  /* width: 16vw; */
-  /* border: 1px solid; */
-  text-align: center;
+  display: flex;
 }
 .wot-timer .values .timer-col span {
   width: 8vw;
@@ -231,6 +226,98 @@
 
 .wot-timer .timer-col {
   /* flex: 1; */
-  width: fit-content;
-  margin: 0 1.4vw;
+  /* width: fit-content;
+  margin: 0 1.4vw; */
+}
+
+@media only screen and (max-width: 700px) {
+  .theme:not(.mobile) {
+    display: none;
+  }
+  .theme.mobile {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .wot-timer {
+    /* margin-top: 14vw; */
+  }
+  .wot-timer > .inner-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 80vw;
+  }
+
+  .wot-timer .timer-title {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .wot-timer .values,
+  .wot-timer .labels {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .wot-timer .values .timer-col {
+    margin-bottom: 6px;
+    position: relative;
+    margin-bottom: 42px;
+    /* width: 47%; */
+  }
+  .wot-timer .values .timer-col::after {
+    content: "";
+    /* width: 100%; */
+    position: absolute;
+    left: 0;
+    bottom: -34px;
+    right: 0;
+    height: 32px;
+    background: var(--timer-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-transform: uppercase;
+  }
+  .wot-timer .values .timer-col:nth-child(2n + 1)::after {
+    content: "days";
+  }
+  .wot-timer .values .timer-col:nth-child(2n + 2)::after {
+    content: "hours";
+  }
+  .wot-timer .values .timer-col:nth-child(2n + 3)::after {
+    content: "minutes";
+  }
+  .wot-timer .values .timer-col:nth-child(2n + 4)::after {
+    content: "seconds";
+  }
+
+  .wot-timer .values .timer-col span {
+    width: 50%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 10vw;
+    line-height: 10vw;
+  }
+  .wot-timer .values .timer-col span:first-child {
+    text-align: right;
+    padding-right: 16px;
+  }
+  .wot-timer .values .timer-col span:last-child {
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  .wot-timer .labels {
+    display: none;
+  }
+
+  .theme-character {
+    margin-top: 12px;
+  }
+  .char-text {
+    font-size: 1rem;
+  }
 }
