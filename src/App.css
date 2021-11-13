@@ -1,72 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 .App {
   font-family: "Fredoka One", cursive;
-}
-
-.heading {
-  width: 100%;
-  text-align: center;
-  background: whitesmoke;
-  padding-top: 2rem;
-}
-.heading h1 {
-  margin: 0;
-}
-
-h1 {
-  font-size: 3rem;
-}
-h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0;
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  --timer-background: blue;
+  --timer-color: white;
 }
 
 .team-wrapper {
-  padding: 4rem;
+  flex: 2;
+  /* padding: 4rem; */
   display: flex;
   justify-content: center;
-  background: whitesmoke;
-}
-
-.answer-wrapper {
-  margin-bottom: 18px;
-  margin-top: 2rem;
-  display: flex;
-  height: 10vw;
-  padding: 3vw;
-  align-items: center;
-  transform: translateX(-100%);
-  transition: transform 0.4s;
-}
-.answer-wrapper.animated {
-  transform: translateX(0);
-}
-.answer-wrapper .answer-baloon {
-  flex: 1;
-  height: 100%;
-  border: 8px solid black;
-  border-radius: 48px;
-  margin-left: 40px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  padding: 12px;
-  text-align: center;
-}
-.answer-baloon:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -26px;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 26px solid transparent;
-  border-bottom: 26px solid transparent;
-  border-right: 26px solid black;
+  /* background: var(--timer-color)smoke; */
 }
 
 @media only screen and (max-width: 800px) {
@@ -84,22 +31,133 @@ h2 {
     display: flex;
     justify-content: center;
   }
-  .answer-wrapper {
-    /*  */
-    margin-bottom: 0;
-    margin-top: 12px;
-    padding: 16px;
-  }
-  .answer-wrapper .answer-baloon {
-    border: 4px solid black;
-    border-radius: 22px;
-    margin-left: 22px;
-    font-size: 1rem;
-  }
-  .answer-baloon:after {
-    left: -12px;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-right: 12px solid black;
-  }
+}
+
+.theme {
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+}
+.theme .chooser-label {
+  width: 100%;
+  background: var(--timer-background);
+  color: var(--timer-color);
+  height: 40px;
+  font-size: 1.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.theme-chooser {
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  width: 100%;
+}
+.theme-chooser .arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 40px;
+  background: var(--timer-background);
+  color: var(--timer-color);
+}
+.theme-chooser .arrow:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.theme-chooser .arrow svg {
+  fill: var(--timer-color);
+}
+.theme-chooser .current-theme {
+  background: var(--timer-background);
+  color: var(--timer-color);
+  flex: 1;
+  margin: 0 4px;
+  font-size: 2vw;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wot-timer {
+  /* height: 100vh;
+  width: 100vw; */
+  flex: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wot-timer .timer-title {
+  background: var(--timer-background);
+  margin: 0 1.4vw;
+  margin-bottom: 8px;
+  padding: 6px;
+  box-sizing: border-box;
+  font-size: 3vw;
+  letter-spacing: 1vw;
+  text-align: center;
+  font-weight: 700;
+  color: var(--timer-color);
+}
+
+.wot-timer .values,
+.wot-timer .labels {
+  display: flex;
+  justify-content: center;
+}
+
+.wot-timer .values .timer-col {
+  /* width: 16vw; */
+  /* border: 1px solid; */
+  text-align: center;
+}
+.wot-timer .values .timer-col span {
+  width: 8vw;
+  font-size: 12vw;
+  line-height: 12vw;
+  display: inline-block;
+  text-align: center;
+  background: var(--timer-background);
+  color: var(--timer-color);
+  padding: 0 6px;
+}
+.wot-timer .values .timer-col span:first-child {
+  margin-right: 0.6vw;
+}
+
+.wot-timer .labels .timer-col {
+  width: 16.6vw;
+  text-align: right;
+  padding-left: 24px;
+  font-size: 2vw;
+  letter-spacing: 0.1vw;
+  text-transform: uppercase;
+  background: var(--timer-background);
+  color: var(--timer-color);
+  margin-top: 8px;
+}
+.wot-timer .labels .timer-col:not(:first-child) {
+  /* opacity: 0; */
+}
+.wot-timer .labels .timer-col div {
+  padding: 4px;
+}
+
+.wot-timer .timer-col {
+  /* flex: 1; */
+  width: fit-content;
+  margin: 0 1.4vw;
 }
