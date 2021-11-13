@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { CHARACTERS } from './data';
+import { CHARACTERS } from './assets/data';
 
 
 function App() {
@@ -65,81 +66,63 @@ function App() {
   };
 
   return theme && (
-    <div className="App" style={{ '--timer-background': theme.color, '--timer-color': 'white' }}>
-      {/* <div className="heading">
-        <h1>
-          {title.split(' ').map(word => (
-            <span key={word}>
-              {[...word].map(char => (
-                <span key={char}>{char}</span>
-              ))}
-            </span>
-            
-          ))}
-        </h1>
-      </div> */}
-      <div className="theme">
-        <div className="chooser-label">CHOOSE THEME</div>
-        <div className="theme-chooser">
-          <div className="prev-theme arrow" onClick={switchToPrevTheme}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" /></svg>
-          </div>
-          <div className="current-theme">{theme.theme}</div>
-          <div className="next-theme arrow" onClick={switchToNextTheme}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" /></svg>
-          </div>
-        </div>
-      </div>
-
-      <div className="wot-timer">
-
-        <div>
-          <div className="timer-title">
-            WHEEL OF TIMER
-          </div>
-          <div className="values">
-            {
-              timer && timer.map(col =>
-                <div key={col.label} className="timer-col value">
-                  {[...col.value].map((char, charIndex) => (<span key={charIndex}>{char}</span>))}
-                </div>
-              )
-            }
-          </div>
-          <div className="labels">
-            <div className="timer-col label">
-              <div>days</div>
+    <div className={'App ' + theme.id} style={{ '--timer-background': theme.color, '--timer-color': 'white' }}>
+      <div className="inner-wrapper">
+        <div className="theme">
+          <div className="chooser-label">CHOOSE THEME</div>
+          <div className="theme-chooser">
+            <div className="prev-theme arrow" onClick={switchToPrevTheme}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" /></svg>
             </div>
-            <div className="timer-col label">
-              <div>hours</div>
-            </div>
-            <div className="timer-col label">
-              <div>minutes</div>
-            </div>
-            <div className="timer-col label">
-              <div>seconds</div>
+            <div className="current-theme">{theme.theme}</div>
+            <div className="next-theme arrow" onClick={switchToNextTheme}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" /></svg>
             </div>
           </div>
         </div>
 
+        <div className="wot-timer">
 
-      </div>
-
-      {/* <div className="team-wrapper">
-        {characters.map((el) => {
-          return (
-            <div className="char-wrapper" key={el.id}>
-              <Character
-                id={el.id}
-                color={el.color}
-                name={el.name}
-                code={el.code}
-              ></Character>
-              <div className="answer-baloon"></div>
+          <div>
+            <div className="timer-title">
+              THE WHEEL OF TIMER
             </div>
-          );
-        })}
-      </div> */}
+            <div className="values">
+              {
+                timer && timer.map(col =>
+                  <div key={col.label} className="timer-col value">
+                    {[...col.value].map((char, charIndex) => (<span key={charIndex}>{char}</span>))}
+                  </div>
+                )
+              }
+            </div>
+            <div className="labels">
+              <div className="timer-col label">
+                <div>days</div>
+              </div>
+              <div className="timer-col label">
+                <div>hours</div>
+              </div>
+              <div className="timer-col label">
+                <div>minutes</div>
+              </div>
+              <div className="timer-col label">
+                <div>seconds</div>
+              </div>
+            </div>
+
+            <div className="theme-character">
+              <div className="char-avatar">
+                <img className={theme.id + '-img'} alt="character-art" src={process.env.PUBLIC_URL + '/people/' + theme.code + '.svg'}></img>
+              </div>
+              <div className="char-text">{theme.quote}</div>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
     </div>
   );
 }
